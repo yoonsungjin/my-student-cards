@@ -19,7 +19,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {/*         {this.state.cards.map((card) => {
+          <div className="card">
+            <p>{card.name}</p>
+          </div>
 
+
+
+        }
+
+        )
+
+
+
+        } */}
       </div>
     );
   }
