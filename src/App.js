@@ -1,40 +1,46 @@
 import React, { Component } from 'react';
 import './App.css';
+import Student from './Components/Student'
+import './style.css';
 
 class App extends Component {
-  state = {
-    cards: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      isLoaded: false
+    };
   }
 
   componentDidMount() {
     fetch('https://www.hatchways.io/api/assessment/students')
       .then(res => res.json())
-      .then(data => {
-        this.setState({ cards: data })
-        console.log(this.state.cards)
-      })
-      .catch(console.log)
+      .then(({ students }) => {
+        this.setState({
+          isLoaded: true,
+          items: students,
+        })
+      });
   }
-
   render() {
-    return (
-      <div className="App">
-        {/*         {this.state.cards.map((card) => {
-          <div className="card">
-            <p>{card.name}</p>
-          </div>
+    const { isLoaded, items } = this.state;
+    console.log(items);
+    if (!isLoaded) {
+      return <div>loading data...</div>;
+    }
 
+    else {
 
+      return (
+        <div className="Data">
+          {items.map(item => (
+            <Student item={item} />
+          ))};
+        </div>
 
-        }
+      );
+    }
 
-        )
-
-
-
-        } */}
-      </div>
-    );
   }
 }
 
