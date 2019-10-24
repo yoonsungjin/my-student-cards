@@ -10,7 +10,7 @@ class App extends Component {
       items: [],
       isLoaded: false,
       query: null,
-      filteredList:
+      filteredList: []
     };
   }
 
@@ -40,32 +40,33 @@ class App extends Component {
         ? this.setState({ filteredBooks: [] })
         : this.setState({ filteredBooks: books });
     });
-
-    render() {
-      const { isLoaded, items } = this.state;
-      console.log(items);
-      if (!isLoaded) {
-        return <div>loading data...</div>;
-      }
-
-      else {
-
-        return (
-          <div className="Data">
-            <input
-              type="text"
-              placeholder="Search by name"
-              onChange={event => this.updateQuery(event.target.value)}
-            />
-            {items.map(item => (
-              <Student item={item} />
-            ))};
-        </div>
-
-        );
-      }
-
-    }
   }
 
-  export default App;
+  render() {
+    const { isLoaded, items } = this.state;
+    console.log(items);
+    if (!isLoaded) {
+      return <div>loading data...</div>;
+    }
+
+    else {
+
+      return (
+        <div className="Data">
+          <input
+            type="text"
+            placeholder="Search by name"
+            onChange={event => this.updateQuery(event.target.value)}
+          />
+          {items.map(item => (
+            <Student item={item} />
+          ))};
+        </div>
+
+      );
+    }
+
+  }
+}
+
+export default App;
