@@ -39,11 +39,13 @@ class App extends Component {
 
     return (
       <div className="Data">
-        <input className="search-books-bar"
-          type="text"
-          placeholder="Search by name"
-          onChange={this.filterList}
-        />
+        <form>
+          <input
+            type="text"
+            placeholder="Search by name"
+            onChange={this.filterList}
+          />
+        </form>
         {items.map(item => (
           <Student item={item} />
         ))}
