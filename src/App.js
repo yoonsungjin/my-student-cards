@@ -7,10 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
-      isLoaded: false,
-      query: null,
-      filteredList: []
+      initialItems: [],
+      items: []
     };
   }
 
@@ -19,52 +17,39 @@ class App extends Component {
       .then(res => res.json())
       .then(({ students }) => {
         this.setState({
-          isLoaded: true,
-          items: students,
-          query: null,
-          filteredList: []
+          initialItems: students,
+          items: students
         })
       });
   }
 
-  updateQuery = query => {
-    this.setState({ query: query });
-    if (query.length > 0) this.handleSearch(query);
-    else this.setState({ filteredList: [] });
-  };
-
-  handleSearch(query) {
-    this.state.items.filter()
-    BooksAPI.search(query.trim(), 20).then(books => {
-      books.error
-        ? this.setState({ filteredBooks: [] })
-        : this.setState({ filteredBooks: books });
+  filterList = (event) => {
+    let items = this.state.initialItems;
+    items = items.filter((item) => {
+      return item.firstName.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
     });
+    this.setState({ items: items });
+    console.log(items)
+
   }
 
   render() {
-    const { isLoaded, items } = this.state;
-    console.log(items);
-    if (!isLoaded) {
-      return <div>loading data...</div>;
-    }
+    const { items } = this.state;
 
-    else {
 
-      return (
-        <div className="Data">
-          <input
-            type="text"
-            placeholder="Search by name"
-            onChange={event => this.updateQuery(event.target.value)}
-          />
-          {items.map(item => (
-            <Student item={item} />
-          ))};
-        </div>
+    return (
+      <div className="Data">
+        <input className="search-books-bar"
+          type="text"
+          placeholder="Search by name"
+          onChange={this.filterList}
+        />
+        {items.map(item => (
+          <Student item={item} />
+        ))}
+      </div>
 
-      );
-    }
+    );
 
   }
 }
