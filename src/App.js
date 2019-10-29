@@ -29,12 +29,12 @@ class App extends Component {
       return item.firstName.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
     });
     this.setState({ items: items });
-    console.log(items)
 
   }
 
   render() {
     const { items } = this.state;
+    console.log(items)
 
 
     return (
