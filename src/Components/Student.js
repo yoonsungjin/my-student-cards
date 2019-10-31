@@ -1,40 +1,42 @@
 import React, { Component } from 'react';
 import './Student.css';
-import { Button, Collapse } from 'react-bootstrap';
+import InputTag from './InputTag';
 
 class student extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            open: false
+            show: false,
+            tag: []
         }
     }
 
-    toggle = () => {
-        this.setState({ open: !open });
-    }
+    onClick = e => {
+        this.setState({
+            show: !this.state.show
+        });
+    };
 
     render() {
         return (
             <div id={this.props.item.id}>
                 <img src={this.props.item.pic} alt={this.props.item.pic}></img>
                 <h1>{this.props.item.firstName + ' ' + this.props.item.lastName}</h1>
-                <Button className="btn" onClick={this.toggle()}>
-                    Collapse Div
-                </Button>
+                <button className="btn" onClick={this.onClick}>
+                    +
+                </button>
 
                 <p>Email: {this.props.item.email}</p>
                 <p>Company: {this.props.item.company} </p>
                 <p>Skill: {this.props.item.skill}</p>
                 <p>Avarage: {this.props.item.grades.reduce((prev, curr) => (prev + curr) / this.props.item.grades.length)}%</p>
-                <Collapse in={false}>
-                    <div>
-                        <ul>
-                            {this.props.item.grades.map((grade, i) => <li>test{i + 1}:   {grade}%</li>)}
-                        </ul>
-                    </div>
-                </Collapse>
+                <div className="expand-btn" style={{ display: this.state.show ? "block" : "none" }}>
+                    <ul>
+                        {this.props.item.grades.map((grade, i) => <li>test{i + 1}:   {grade}%</li>)}
+                    </ul>
+                    <InputTag />
+                </div>
             </div >
         );
 

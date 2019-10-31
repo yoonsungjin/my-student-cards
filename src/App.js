@@ -8,7 +8,8 @@ class App extends Component {
     super(props);
     this.state = {
       initialItems: [],
-      items: []
+      items: [],
+      searchTag: null
     };
   }
 
@@ -32,6 +33,12 @@ class App extends Component {
 
   }
 
+  filterTag = (event) => {
+    this.setState({ searchTag: event.target.value });
+
+  }
+
+
   render() {
     const { items } = this.state;
     console.log(items)
@@ -45,9 +52,16 @@ class App extends Component {
             placeholder="Search by name"
             onChange={this.filterList}
           />
+          <input
+            className="tag-input"
+            type="text"
+            placeholder="Search by tags"
+            onChange={this.filterTag}
+          />
+
         </form>
         {items.map(item => (
-          <Student item={item} />
+          <Student item={item} searchTag={this.state.searchTag} />
         ))}
       </div>
 
