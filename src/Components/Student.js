@@ -11,12 +11,16 @@ class student extends Component {
         }
     }
 
+    toggle = () => {
+        this.setState({ open: !open });
+    }
+
     render() {
         return (
             <div id={this.props.item.id}>
                 <img src={this.props.item.pic} alt={this.props.item.pic}></img>
                 <h1>{this.props.item.firstName + ' ' + this.props.item.lastName}</h1>
-                <Button className="btn" onClick={this.setState(!this.state.open)}>
+                <Button className="btn" onClick={this.toggle()}>
                     Collapse Div
                 </Button>
 
