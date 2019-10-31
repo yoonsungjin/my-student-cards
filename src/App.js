@@ -34,7 +34,11 @@ class App extends Component {
   }
 
   filterTag = (event) => {
-    this.setState({ searchTag: event.target.value });
+    let items = this.state.items;
+    items = items.filter((item) => {
+      return item.firstName.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
+    });
+    this.setState({ items: items });
 
   }
 
@@ -62,7 +66,7 @@ class App extends Component {
 
         </form>
         {items.map(item => (
-          <Student item={item} searchTag={this.state.searchTag} />
+          <Student item={item} />
         ))}
       </div>
 
