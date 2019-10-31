@@ -1,4 +1,5 @@
 import React from 'react';
+import './InputTag.css';
 
 class InputTag extends React.Component {
     constructor() {
@@ -32,7 +33,11 @@ class InputTag extends React.Component {
                         </li>
                     ))}
                     <li className="input-tag__tags__input">
-                        <input className="add-tag-input" type="text" onKeyDown={this.inputKeyDown} ref={c => { this.tagInput = c; }} />
+                        <input className="add-tag-input"
+                            placeholder="Add a tag"
+                            type="text"
+                            onKeyDown={this.inputKeyDown}
+                            ref={c => { this.tagInput = c; }} />
                     </li>
                 </ul>
             </div>

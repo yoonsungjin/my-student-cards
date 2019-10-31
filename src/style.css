@@ -8,6 +8,7 @@ img {
   margin-left:15px;
   margin-top:20px;
   margin-bottom:20px;
+
 }
 ul, li {
     list-style: none;
@@ -16,4 +17,51 @@ ul, li {
 div {
    border-top:1px;
    border-bottom:1px; 
+}
+
+.searchForm {
+  width: 100%;
+  text-align: center;
+}
+
+input {
+  border: 0;
+  border-bottom: solid 1px gainsboro;
+  font-size: 1.5rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+.searchForm input {
+  width: 95%;
+  padding: 15px 0;
+  margin: 0 auto;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: solid 1px black;
+}
+
+input::placeholder {
+  color: grey;
+}
+
+.expand-btn {
+  position: absolute;
+  right: 15px;
+  padding-top: 15px;
+}
+
+.expand-btn button {
+  border: 0;
+  background-color: inherit;
+}
+
+.expand-btn button:focus {
+  outline: none;
+}
+
+.expand-btn i {
+  font-size: 1.5rem;
+  color: grey;
 }

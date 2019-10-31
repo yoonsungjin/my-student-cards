@@ -46,8 +46,9 @@ class App extends Component {
 
     return (
       <div className="Data">
-        <form>
+        <form className="searchForm">
           <input
+            className="name-input"
             type="text"
             placeholder="Search by name"
             onChange={this.filterList}

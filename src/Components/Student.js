@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Student.css';
 import InputTag from './InputTag';
 
 class student extends Component {
@@ -20,18 +19,18 @@ class student extends Component {
 
     render() {
         return (
-            <div id={this.props.item.id}>
+            <div id={this.props.item.id} className="studentContainer">
                 <img src={this.props.item.pic} alt={this.props.item.pic}></img>
                 <h1>{this.props.item.firstName + ' ' + this.props.item.lastName}</h1>
-                <button className="btn" onClick={this.onClick}>
+                <button className="expand-btn" onClick={this.onClick} >
                     +
                 </button>
 
                 <p>Email: {this.props.item.email}</p>
                 <p>Company: {this.props.item.company} </p>
                 <p>Skill: {this.props.item.skill}</p>
-                <p>Avarage: {this.props.item.grades.reduce((prev, curr) => (prev + curr) / this.props.item.grades.length)}%</p>
-                <div className="expand-btn" style={{ display: this.state.show ? "block" : "none" }}>
+                <p>Avarage: {this.props.item.grades.reduce((avg, e, i, arr) => avg + e / this.props.item.grades.length, 0)}%</p>
+                <div style={{ display: this.state.show ? "block" : "none" }}>
                     <ul>
                         {this.props.item.grades.map((grade, i) => <li>test{i + 1}:   {grade}%</li>)}
                     </ul>
